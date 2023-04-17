@@ -1,7 +1,16 @@
 import { useState } from "react"
 import menuItems from "./menuItems"
 
-const MenuItem = ({ item, addToCart }) => {
+type AddToCartFunction = (item: MenuItem) => void
+type MenuItem = {
+  id: number
+  name: string
+  description: string
+  price: number
+  image: string
+}
+
+const MenuItem = ({ item, addToCart }: { item: MenuItem; addToCart: AddToCartFunction }) => {
   return (
     <div className="text-center">
       <div className="mx-auto w-full rounded-lg bg-white p-4 shadow-md transition duration-300 hover:shadow-lg sm:w-48">
@@ -23,7 +32,7 @@ const MenuItem = ({ item, addToCart }) => {
 const RestaurantMenu = () => {
   const [total, setTotal] = useState(0)
 
-  const addToCart = (item: any) => {
+  const addToCart = (item: MenuItem) => {
     setTotal(total + item.price)
   }
 
@@ -32,7 +41,9 @@ const RestaurantMenu = () => {
   }
 
   const renderMenuItems = () => {
-    return menuItems.map((item) => <MenuItem key={item.id} item={item} addToCart={addToCart} />)
+    return menuItems.map((item: MenuItem) => (
+      <MenuItem key={item.id} item={item} addToCart={addToCart} />
+    ))
   }
 
   return (
