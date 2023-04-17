@@ -12,14 +12,14 @@ type MenuItem = {
 
 const MenuItem = ({ item, addToCart }: { item: MenuItem; addToCart: AddToCartFunction }) => {
   return (
-    <div className="text-center">
-      <div className="mx-auto w-full rounded-lg bg-white p-4 shadow-md transition duration-300 hover:shadow-lg sm:w-48">
-        <img src={item.image} alt={item.name} className="object- mb-2 h-32 w-full object-contain" />
+    <div className="container text-center">
+      <div className="w-full p-4 mx-auto transition duration-300 bg-white rounded-lg shadow-md hover:shadow-lg sm:w-48">
+        <img src={item.image} alt={item.name} className="object-contain w-full h-32 mb-2 object-" />
         <h2 className="mb-2 text-xl font-semibold">{item.name}</h2>
         <p className="mb-2 text-gray-600">{item.description}</p>
         <p className="font-semibold text-gray-800">${item.price.toFixed(2)}</p>
         <button
-          className="mt-4 rounded bg-blue-500 px-4 py-2 font-semibold text-white transition duration-300 hover:bg-blue-600"
+          className="px-4 py-2 mt-4 font-semibold text-white transition duration-300 bg-blue-500 rounded hover:bg-blue-600"
           onClick={() => addToCart(item)}
         >
           Add to Cart
@@ -47,8 +47,8 @@ const RestaurantMenu = () => {
   }
 
   return (
-    <div className="container mx-auto p-10">
-      <h1 className="mx-auto mb-4 w-64 rounded-md bg-yellow-400 p-2 text-center text-2xl font-semibold shadow-md">
+    <div className="container p-10 mx-auto">
+      <h1 className="w-64 p-2 mx-auto mb-4 text-2xl font-semibold text-center bg-yellow-400 rounded-md shadow-md">
         Menu
       </h1>
       <div className="flex flex-wrap justify-center gap-4 sm:justify-between sm:gap-8">
@@ -59,7 +59,7 @@ const RestaurantMenu = () => {
         <p className="text-slate-800">Total: ${total.toFixed(2)}</p>
         {total > 0 && (
           <button
-            className="mt-4 rounded bg-red-500 px-4 py-2 font-semibold text-white transition duration-300 hover:bg-red-600"
+            className="px-4 py-2 mt-4 font-semibold text-white transition duration-300 bg-red-500 rounded hover:bg-red-600"
             onClick={clearCart}
           >
             Clear Cart
